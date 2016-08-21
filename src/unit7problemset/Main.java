@@ -1,4 +1,4 @@
- package unit7problemset;
+ package pack;
  import java.util.*;
  public class Main
  {
