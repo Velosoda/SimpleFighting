@@ -1,4 +1,3 @@
-package pack;
 import java.util.*;
 public class Main
 {
@@ -133,7 +132,7 @@ public class Main
     	        	if(hero.health <= 0)
     	        	{
     	        		System.out.println("Ahhh " + hero.name + " hit the gym bitch!");
-    	        		user.gym.add(hero);
+    	        		user.addHeroToGym(hero);
     	        		user.party.remove(hero);
     	        		if(user.party.isEmpty())
     	        		{
@@ -179,6 +178,7 @@ public class Main
     		}
     		else if(input.equals("3"))
     		{
+    			user.gymHeroCheck();
     			//Heal Team 
     			//3 guys in party fight in dungeon, they all die and hp is 0, they get moved out of party array to new array called gym, 
     			//where their health is reset after a certain amount of time like a countdown to move them back from the 
@@ -301,4 +301,3 @@ public class Main
         }
     }
 }
-
