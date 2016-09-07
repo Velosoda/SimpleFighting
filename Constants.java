@@ -22,35 +22,19 @@ public class Constants
 					"\n Health:" + hero.health +
 					"\n Attack:" + hero.attack +
 					"\n Speed:" + hero.speed +
-					"\n Type:" + hero.type +
-					"\n Reps:" + hero.currentReps);
+					"\n Type:" + hero.type);
 		}
 	}
-	public static void partyStats(User user)
+	public static void gymStats(ArrayList<Hero> gym)
 	{
-		for(int i=0;i<user.party.size();i++)
+		for(int i=0;i<gym.size();i++)
 		{
-			Hero hero = user.party.get(i);	
+			Hero hero = gym.get(i);	
 			System.out.println("\n Name:" + hero.name +
-					"\n Health:" + hero.health +
-					"\n Attack:" + hero.attack +
-					"\n Speed:" + hero.speed +
-					"\n Type:" + hero.type +
-					"\n");
-		}	
-	}
-	public static void teamStats(User user)
-	{
-		for(int i=0;i<user.team.size();i++)
-		{
-			Hero hero = user.team.get(i);	
-			System.out.println("\n Name:" + hero.name +
-							   "\n Health:" + hero.health +
-							   "\n Attack:" + hero.attack +
-							   "\n Speed:" + hero.speed +
-						       "\n Type:" + hero.type +
-						       "\n");
-		}	
+					"\n Health: " + hero.health +
+					"\n Reps: " + hero.currentReps +
+					"\n Reps Until Revived: " + hero.currentReps);
+		}
 	}
 	public static void statsOne(Hero user)
 	{
@@ -122,7 +106,7 @@ public class Constants
 		if(user.party.size()>=1)
 		{
 			System.out.println("Who would you like to switch into:");
-			Constants.partyStats(user);
+			Constants.arrayStats(user.party);
 			//selects name 
 			boolean switcher = true;
 			int i = 0;
