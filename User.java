@@ -1,7 +1,4 @@
-package pack; 
 import java.util.*;
-import java.time.Clock;
-import java.time.ZoneId;
 public class User 
 {
 	Scanner scans = new Scanner(System.in);
@@ -36,16 +33,16 @@ public class User
 		}
 	}
 	
-	public void chooseMissionTeam(User user)
+	public void chooseMissionTeam()
 	{
 		boolean finish = true;
 		while(finish == true)
 		{
 			System.out.println("Please Choose the names of up to three Heros to join you on your missions:");
-			Constants.teamStats(user);
+			Constants.arrayStats(team);
 			String chosen = scans.nextLine();
 		
-			for(int i=0;i<user.team.size();i++)
+			for(int i=0;i<team.size();i++)
 			{
 				Hero hero = team.get(i); 
 				if(hero.name.equals(chosen)) 
@@ -56,9 +53,9 @@ public class User
 					String answer = scans.nextLine();
 					if(answer.toUpperCase().equals("1") || answer.toUpperCase().equals("YES"))
 					{
-						if(user.party.size()<3)
+						if(party.size()<3)
 						{	
-							user.party.add(hero);
+							party.add(hero);
 							System.out.println(hero.name + "has been added to the mission squad!");
 						}
 						else
@@ -80,9 +77,7 @@ public class User
 					return;//what is the purpose of this, we want to run this method until it finds a name ?
 				}
 			}
-		
 			System.out.println("Sorry, nobody on your team is named " + chosen);//Should go here, so that if novody in the for loops name==chosen, it will exit for loop, run this message and start the While loop over again
-			
 		}
 	}
 	public void viewGym()
@@ -108,20 +103,44 @@ public class User
 		hero.health=0;
 		hero.startWorkOut();
 	}
-/*//	public static void main(String[] args)
-//	{
-//		User user = new User();
-//		Hero hero = new Hero();
-//		user.addHeroToGym(hero);
-//		user.test();
-///*		User user = new User();
-//		user.party.add(new Hero());
-//		user.party.add(new Hero());
-//		user.party.add(new Hero());
-//		user.getAvgs();
-//		Constants.partyStats(user);
-//		System.out.println(user.avgAttack);
-//		System.out.println(user.avgHealth);
-//
-	}*/
+	public void gymHeroCheck()
+	
+	{
+		if(gym.isEmpty())
+		{
+			System.out.println("Sorry, Looks like you have nobody in the gym.");
+			return;			
+		}
+		System.out.println("Please Choose the name of the Hero you wish to remove from the gym");
+		Constants.gymStats(gym);
+		String chosen = scans.nextLine();
+	
+		for(int i=0;i<gym.size();i++)
+		{
+			Hero hero = gym.get(i); 
+			if(hero.name.equals(chosen)) 
+			{
+				
+				Constants.statsOne(hero);
+				
+				if(hero.health == hero.maxHealth)
+				{
+					System.out.println("Congratulations! Your hero has finished his workout and has rejoined your team.");
+					gym.remove(i);
+					return;
+				}
+				else
+				{
+					System.out.println("Sorry, " + hero.name + " has not finished training. He still has " + (hero.repsTillRevive-hero.currentReps) + " reps remaining");
+				}
+				
+			
+			}
+			else
+			{
+				System.out.println("Sorry, nobody on your team is named " + chosen);
+			}
+			
+		}
+	}
 }
