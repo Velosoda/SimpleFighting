@@ -171,11 +171,11 @@ public class Main
     		
     		if(input.equals("1"))
     		{
-    			Constants.teamStats(user);
+    			Constants.arrayStats(user.team);
     		}
     		else if(input.equals("2"))
     		{
-    			user.chooseMissionTeam(user); 
+    			user.chooseMissionTeam(); 
     		}
     		else if(input.equals("3"))
     		{
@@ -301,5 +301,4 @@ public class Main
         }
     }
 }
-
 
