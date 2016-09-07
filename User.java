@@ -108,6 +108,38 @@ public class User
 		hero.health=0;
 		hero.startWorkOut();
 	}
+	
+	public void gymHeroCheck(User user)
+	{
+		System.out.println("Please Choose the name of the Hero you wish to remove from the gym");
+		Constants.gymStats(user);
+		String chosen = scans.nextLine();
+	
+		for(int i=0;i<user.gym.size();i++)
+		{
+			Hero hero = gym.get(i); 
+			if(hero.name.equals(chosen)) 
+			{
+				
+				Constants.statsOne(hero);
+				
+				if(hero.health == hero.maxHealth)
+				{
+					System.out.println("Congratulations! Your hero has finished his workout and has rejoined your team.");
+					user.gym.remove(i);
+					return;
+				}
+				else
+				{
+					System.out.println("Sorry, " + hero.name + " has not finished training. He still has " + (hero.repsTillRevive-hero.currentReps) + " reps remaining");
+				}
+				
+			
+			}
+			
+			System.out.println("Sorry, nobody on your team is named " + chosen);
+		}
+		
 /*//	public static void main(String[] args)
 //	{
 //		User user = new User();
