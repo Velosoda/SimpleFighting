@@ -48,4 +48,3 @@ public class Hero extends Fighter
         timer.scheduleAtFixedRate(task,1000,1000);
     }
 }
- //dyl   
