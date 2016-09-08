@@ -215,18 +215,12 @@ public class Main
     	boolean exit = true;
     	while(exit == true)
     	{
-    		//<--- this infinity loop will force us to use breaks when we can just avoid that by adding a condition what we currently have is messy and needs to be more simple
-    		//get the input 
-    		//scan the input and make sure its a number that we can use
-    		//user selects item they want to buy, check to see if the have enough money
-    		//make the transaction 
-    		//add the item to the user's team/"inventory"
-    		//open store again
-    		//repeat
+    		
     		System.out.println("Protein: " + user.protein);
     		System.out.println("----------------------------------------");
     		System.out.println(Constants.store);
     		String input = scan.nextLine();
+    		
     		if(input.equals("1"))
     		{
     			if(user.protein >= 100)
@@ -234,22 +228,43 @@ public class Main
     				//Adds a fighter to team
     				Hero newGuy = new Hero();
     				System.out.println("Congratulations! new fighter has been added!");
+    				boolean notDuplicate = true;
+    				FIRST:
+    				while(notDuplicate){
     				System.out.println("Please name your new hero!:");
+    				
     				String newName = scan.nextLine(); 
     				if(!user.team.isEmpty())
     				{
-    					if(user.team.iterator().next().name.equals(newName))
+    					for(int i = 0; i<user.team.size();i++)//here's problem?
     					{
-    						System.out.println("hey nigga whatchyou doing??");
-    						return;
+    						Hero heroTest = user.team.get(i);
+    						if(heroTest.name.equals(newName)){
+    						System.out.println("Sorry, you must give your hero a unique name.");
+    						continue FIRST;
+    						}
+    						//return;
+    					
     					}
-    				}
+    					newGuy.name = newName;
+        				System.out.println("Say hello to");
+        				Constants.statsOne(newGuy); 
+        				user.team.add(newGuy);
+        				user.protein = user.protein - 100;
+        				notDuplicate = false;  						
+    					
+    				}else{
+    				
     				newGuy.name = newName;
     				System.out.println("Say hello to");
     				Constants.statsOne(newGuy); 
     				user.team.add(newGuy);
     				user.protein = user.protein - 100;
-    			}
+    				notDuplicate = false;
+    				}
+    				}
+    				}
+    			
     			else
     			{
     				System.out.print(Constants.notEnoughProtein);
@@ -276,8 +291,8 @@ public class Main
     		else if(input.equals("4"))
     		{
     			System.out.println("Thank you for shopping!");
-    			exit = false;
-    			menu();
+    			//exit = false;
+    			return;
     		}
     		else
     		{
