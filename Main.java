@@ -28,7 +28,7 @@ public class Main
 	    		break;
 	    }	
     }
-    private void quit() 
+    public void quit() 
     {
         System.out.println("See you soon!");
         System.exit(1); 
@@ -210,7 +210,7 @@ public class Main
     		}
     	}
     }
-    private void guyStore() 
+    public void guyStore() 
     {
     	boolean exit = true;
     	while(exit == true)
