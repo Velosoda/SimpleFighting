@@ -137,13 +137,48 @@ public class Constants
 		}
 		scan.close();
 	}
-	public void switchHero(Hero heroToSwapIn, ArrayList<Hero> party)
+	public void switchHero(ArrayList<Hero> party)
 	{
-//		//oldhero has index of 0
-//		temp = a;
-//		a = b; 
-//		b = temp; 
-		Hero temp = party.get(0);
-		
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Who would you like bring out");
+		Constants.arrayStats(party);
+		String newHero = scan.nextLine();
+		for(int i = 0; i < party.size(); i++)
+		{
+			Hero heroToSwapIn = party.get(i);
+			if(heroToSwapIn.name.equals(newHero))
+			{
+				Hero oldHero = party.get(0);
+				party.add(0, heroToSwapIn);
+				party.add(oldHero);
+			}
+			else if(i==party.size() && !heroToSwapIn.name.equals(newHero))
+			{
+				System.out.println("Sorry that hero doesn't exist");
+			}
+			else
+			{
+				System.out.println("You cant Swap the first player with the first player");
+				scan.close();
+				return;
+			}
+		}
+		Constants.arrayStats(party);
+		scan.close();
+		return;
 	}
+	public static void main(String[] args)
+	{
+		Constants constants = new Constants();
+		ArrayList<Hero> party = new ArrayList<Hero>();
+		for(int i = 0; i < 3; i++)
+		{
+			Hero hero = new Hero();
+			hero.name = ""+ (i + 1) ;
+			party.add(hero);
+			System.out.println(party.get(i).name);
+		}
+		constants.switchHero(party);
+	}
+}
 }
